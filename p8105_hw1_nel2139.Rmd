@@ -38,6 +38,28 @@ ggplot(penguins, aes(x = bill_length_mm, y = flipper_length_mm, color = species)
 ggsave("flip_vs_bill_plot.png")
 ```
 
-
 # Problem 2
+
+The chunk below sets a seed so the same random sample is generated each time to ensure reproducibility and then creates a data frame containing a sample of size 10 from a standard normal distribution constructs the specified logical vector, creates a character vector of length 10, and creates a factor vector of length 10 with three levels. 
+
+```{r problem_2_df}
+library(tidyverse)
+
+set.seed(1)
+
+prob2_df = tibble(
+  norm_samp = rnorm(10, mean = 0, sd = 1),
+  norm_samp_pos = norm_samp > 0, 
+  vec_char = c("a", "b", "c", "d", "e", "f", "g", "h", "i", "j"),
+  vec_factor = factor(c("low", "low", "low", "med", "med", "med", "med", "high", "high", "high"))
+)
+
+```
+
+
+
+
+
+
+
 
