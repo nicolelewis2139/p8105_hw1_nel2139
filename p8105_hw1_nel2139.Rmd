@@ -7,10 +7,16 @@ output: github_document
 
 # Section 0: Libraries
 
-```{r load_packages, message = F}
+This code loads the tidyverse package.
+```{r load_packages, message = FALSE}
 library(tidyverse)
 ```
 
+# Problem 1 
+
+## Loading the data
+
+This code loads the `penguins` dataset from the `palmerpenguins` package.
 
 ```{r load_data}
 data("penguins", package = "palmerpenguins")
