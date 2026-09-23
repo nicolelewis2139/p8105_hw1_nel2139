@@ -28,6 +28,13 @@ The `penguins` dataset contains size measurements for adult foraging penguins ob
 
 The dataset covers three species (`r levels(penguins$species)`) living on three islands (`r levels(penguins$island)`), observed from `r min(penguins$year)` to `r max(penguins$year)`. Bill length ranges from `r min(penguins$bill_length_mm, na.rm = TRUE)` to `r max(penguins$bill_length_mm, na.rm = TRUE)` mm and bill depth ranges from `r min(penguins$bill_depth_mm, na.rm = TRUE)` to `r max(penguins$bill_depth_mm, na.rm = TRUE)` mm. Flipper length ranges from `r min(penguins$flipper_length_mm, na.rm = TRUE)` to `r max(penguins$flipper_length_mm, na.rm = TRUE)` mm, with a mean value of `r round(mean(penguins$flipper_length_mm, na.rm = TRUE), 1)` mm. Body mass ranges from `r min(penguins$body_mass_g, na.rm = TRUE)` to `r max(penguins$body_mass_g, na.rm = TRUE)` g. Sex is recorded as `r paste(levels(penguins$sex), collapse = " or ")`, and is missing for `r sum(is.na(penguins$sex))` penguins.
 
+## Plots
+
+This code creates a scatterplot of flipper length (y) versus bill length (x), with points colored by species. 
+
+```{r flip_vs_bill_plot}
+ggplot(penguins, aes(x = bill_length_mm, y = flipper_length_mm, color = species)) + geom_point()
+```
 
 
 
