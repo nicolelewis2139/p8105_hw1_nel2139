@@ -22,4 +22,14 @@ This code loads the `penguins` dataset from the `palmerpenguins` package.
 data("penguins", package = "palmerpenguins")
 ```
 
+## Description of the dataset 
+
+The `penguins` dataset includes measurements for penguin species, island in Palmer Archipelago, size (flipper length, body mass, bill dimensions), and sex. The dataset includes the following variables; `species`, `island`, `bill_len` `bill_dep`, `flipper_len`, `body_mass`, `sex`, and `year`. The species are `r levels(penguins$species)`, and the islands are `r levels(penguins$island)`. Bill length ranges from `r min(penguins$bill_length_mm, na.rm = TRUE)` to `r max(penguins$bill_length_mm, na.rm = TRUE)` mm, bill depth ranges from `r min(penguins$bill_depth_mm, na.rm = TRUE)` to `r max(penguins$bill_depth_mm, na.rm = TRUE)` mm, flipper length ranges from `r min(penguins$flipper_length_mm, na.rm = TRUE)` to `r max(penguins$flipper_length_mm, na.rm = TRUE)` mm, body mass ranges from `r min(penguins$body_mass_g, na.rm = TRUE)` to `r max(penguins$body_mass_g, na.rm = TRUE)` g. Sex is recorded as `r levels(penguins$sex)`, with some values missing, and the data were collected from `r min(penguins$year)` to `r max(penguins$year)`.
+
+The dataset has `r nrow(penguins)` rows and `r ncol(penguins)` columns.
+
+The mean flipper length is `r round(mean(penguins$flipper_length_mm, na.rm = TRUE), 1)` mm.
+
+
+
 
