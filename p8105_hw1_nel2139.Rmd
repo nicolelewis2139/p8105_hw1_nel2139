@@ -8,6 +8,7 @@ output: github_document
 # Section 0: Libraries
 
 This code loads the tidyverse package.
+
 ```{r load_packages, message = FALSE}
 library(tidyverse)
 ```
@@ -32,19 +33,18 @@ The dataset covers three species (`r levels(penguins$species)`) living on three 
 
 This code creates a scatterplot of flipper length (y) versus bill length (x), with points colored by species. The second line of code exports the scatterplot to the project directory. 
 
-
-```{r flip_vs_bill_plot}
+```{r flip_vs_bill_plot, message = FALSE, warning = FALSE}
 ggplot(penguins, aes(x = bill_length_mm, y = flipper_length_mm, color = species)) + geom_point()
 ggsave("flip_vs_bill_plot.png")
 ```
 
+Two penguins with missing bill or flipper measurements are excluded from the plot.
+
 # Problem 2
 
-The chunk below sets a seed so the same random sample is generated each time to ensure reproducibility and then creates a data frame containing a sample of size 10 from a standard normal distribution constructs the specified logical vector, creates a character vector of length 10, and creates a factor vector of length 10 with three levels. 
+The chunk below sets a seed to ensure reproducibility, then creates a data frame containing a sample of size 10 from a standard normal distribution, constructs the specified logical vector, creates a character vector of length 10, and creates a factor vector of length 10 with three levels. 
 
 ```{r problem_2_df}
-library(tidyverse)
-
 set.seed(1)
 
 prob2_df = tibble(
@@ -53,9 +53,7 @@ prob2_df = tibble(
   vec_char = c("a", "b", "c", "d", "e", "f", "g", "h", "i", "j"),
   vec_factor = factor(c("low", "low", "low", "med", "med", "med", "med", "high", "high", "high"))
 )
-
 ```
-
 
 The next chunk of code attempts to take the mean of each variable in the dataframe. 
 
@@ -65,27 +63,24 @@ mean_stnorm_samp_pos = mean(pull(prob2_df, stnorm_samp_pos))
 mean_vec_char = mean(pull(prob2_df, vec_char))
 mean_vec_factor = mean(pull(prob2_df, vec_factor))
 
-
 mean_stnorm_samp
 mean_stnorm_samp_pos
 mean_vec_char
 mean_vec_factor
 ```
-Taking the mean works for the numeric and logical variables but does not work for the character and factor variables as the mean function only accepts numbers, or values it can easily treat as numbers. 
 
-The mean of the numeric variable `stnorm_samp` is `r round(mean_stnorm_samp, digits = 2)`, which is the average of the 10 sampled values. This value is close to 0, as expected for a standard normal distribution. The mean of the logical variable `stnorm_samp_pos` is `r round(mean_stnorm_samp_pos, digits = 2)`, which is the proportion of sampled values greater than 0. This works because TRUE is treated as 1 and FALSE is treated as 0. The mean of the character variable `vec_char` cannot be calculated as the variable contains text, which has no numerical value. The mean of the factor variable `vec_factor` also cannot be calculated as the variable contains categories with no numeric meaning 
+Taking the mean works for the numeric and logical variables but does not work for the character and factor variables, as the mean function only accepts numbers, or values it can easily treat as numbers. 
 
+The mean of the numeric variable `stnorm_samp` is `r round(mean_stnorm_samp, digits = 2)`, which is the average of the 10 sampled values. This value is close to 0, as expected for a standard normal distribution. The mean of the logical variable `stnorm_samp_pos` is `r round(mean_stnorm_samp_pos, digits = 2)`, which is the proportion of sampled values greater than 0. This works because TRUE is treated as 1 and FALSE is treated as 0. The mean of the character variable `vec_char` cannot be calculated as the variable contains text, which has no numerical value. The mean of the factor variable `vec_factor` also cannot be calculated as the variable contains categories with no numeric meaning. 
 
-
-The next chunk of code applies the as.numeric function to the logical, character and factor variables to to attempt to convert them to numeric. The code is shown but not evaluated.
+The next chunk of code applies the `as.numeric` function to the logical, character, and factor variables to attempt to convert them to numeric. The code is shown but not evaluated.
 
 ```{r problem_2_as_numeric, eval = FALSE}
 as.numeric(pull(prob2_df, stnorm_samp_pos))
 as.numeric(pull(prob2_df, vec_char))
 as.numeric(pull(prob2_df, vec_factor))
 ```
-Converting the logical variable `stnorm_samp` to numeric turns TRUE into 1 and a FALSE into 0. Converting the character variable `vec_char` returns NA for every value as the variable contains text with no numerical value. Converting the factor variable `vec_factor` returns the numbers 1, 2, and 3, as R stores each factor level as a number, assigned in alphabetical order.  
+
+Converting the logical variable `stnorm_samp_pos` to numeric turns TRUE into 1 and FALSE into 0. Converting the character variable `vec_char` returns NA for every value as the variable contains text with no numerical value. Converting the factor variable `vec_factor` returns the numbers 1, 2, and 3, as R stores each factor level as a number, assigned in alphabetical order.  
 
 This helps explain what happens when taking the mean. The logical variable has a natural numeric meaning, so taking the mean treats TRUE as 1 and FALSE as 0 and returns the proportion of TRUE values. The character variable cannot be converted to numbers at all, so its mean is NA. The factor variable can be converted to numbers, but these numbers are just labels for the categories with no numeric meaning, so taking the mean returns NA. 
-
-
