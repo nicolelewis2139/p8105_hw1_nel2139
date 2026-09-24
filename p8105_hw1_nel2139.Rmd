@@ -71,18 +71,21 @@ mean_stnorm_samp_pos
 mean_vec_char
 mean_vec_factor
 ```
-Taking the mean works for the numeric and logical variables, `stnorm_samp` and `stnorm_samp_pos`, respectively. The mean of the numeric variable `stnorm_samp` is `r round(mean_stnorm_samp, digits = 2)`, which is the average of the 10 sampled values, this is close to 0, as expected for a standard normal distribution. 
-The mean of the logical variable `stnorm_samp_pos` is `r round(mean_stnorm_samp_pos, digits = 2)`, whici is the proportion of sampled values greater than 0. This works because TRUE is treated as 1 and FALSE is treated as 0. 
+Taking the mean works for the numeric and logical variables but does not work for the character and factor variables as the mean function only accepts numbers, or values it can easily treat as numbers. 
+
+The mean of the numeric variable `stnorm_samp` is `r round(mean_stnorm_samp, digits = 2)`, which is the average of the 10 sampled values. This value is close to 0, as expected for a standard normal distribution. The mean of the logical variable `stnorm_samp_pos` is `r round(mean_stnorm_samp_pos, digits = 2)`, which is the proportion of sampled values greater than 0. This works because TRUE is treated as 1 and FALSE is treated as 0. The mean of the character variable `vec_char` cannot be calculated as the variable contains text, which has no numerical value. The mean of the factor variable `vec_factor` also cannot be calculated as the variable contains categories with no numeric meaning 
 
 
 
+The next chunk of code applies the as.numeric function to the logical, character and factor variables to to attempt to convert them to numeric. The code is shown but not evaluated.
 
+```{r problem_2_as_numeric, eval = FALSE}
+as.numeric(pull(prob2_df, stnorm_samp_pos))
+as.numeric(pull(prob2_df, vec_char))
+as.numeric(pull(prob2_df, vec_factor))
+```
+Converting the logical variable `stnorm_samp` to numeric turns TRUE into 1 and a FALSE into 0. Converting the character variable `vec_char` returns NA for every value as the variable contains text with no numerical value. Converting the factor variable `vec_factor` returns the numbers 1, 2, and 3, as R stores each factor level as a number, assigned in alphabetical order.  
 
-Taking the mean works for the numeric and logical variables but does not work for the character and factor variables. 
-The mean of the numeric variable 
-
-
-
-
+This helps explain what happens when taking the mean. The logical variable has a natural numeric meaning, so taking the mean treats TRUE as 1 and FALSE as 0 and returns the proportion of TRUE values. The character variable cannot be converted to numbers at all, so its mean is NA. The factor variable can be converted to numbers, but these numbers are just labels for the categories with no numeric meaning, so taking the mean returns NA. 
 
 
