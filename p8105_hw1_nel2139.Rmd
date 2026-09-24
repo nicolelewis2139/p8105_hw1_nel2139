@@ -26,7 +26,6 @@ data("penguins", package = "palmerpenguins")
 ## Description of the dataset 
 
 The `penguins` dataset contains size measurements for adult foraging penguins observed near Palmer Station, Antarctica, including each penguin's species, island in the Palmer Archipelago, size (flipper length, body mass, and bill dimensions), and sex. The dataset has `r nrow(penguins)` rows and `r ncol(penguins)` columns and includes the following variables: `species`, `island`, `bill_length_mm`, `bill_depth_mm`, `flipper_length_mm`, `body_mass_g`, `sex`, and `year`.
-
 The dataset covers three species (`r levels(penguins$species)`) living on three islands (`r levels(penguins$island)`), observed from `r min(penguins$year)` to `r max(penguins$year)`. Bill length ranges from `r min(penguins$bill_length_mm, na.rm = TRUE)` to `r max(penguins$bill_length_mm, na.rm = TRUE)` mm and bill depth ranges from `r min(penguins$bill_depth_mm, na.rm = TRUE)` to `r max(penguins$bill_depth_mm, na.rm = TRUE)` mm. Flipper length ranges from `r min(penguins$flipper_length_mm, na.rm = TRUE)` to `r max(penguins$flipper_length_mm, na.rm = TRUE)` mm, with a mean value of `r round(mean(penguins$flipper_length_mm, na.rm = TRUE), 1)` mm. Body mass ranges from `r min(penguins$body_mass_g, na.rm = TRUE)` to `r max(penguins$body_mass_g, na.rm = TRUE)` g. Sex is recorded as `r paste(levels(penguins$sex), collapse = " or ")`, and is missing for `r sum(is.na(penguins$sex))` penguins.
 
 ## Plots
@@ -82,5 +81,4 @@ as.numeric(pull(prob2_df, vec_factor))
 ```
 
 Converting the logical variable `stnorm_samp_pos` to numeric turns TRUE into 1 and FALSE into 0. Converting the character variable `vec_char` returns NA for every value as the variable contains text with no numerical value. Converting the factor variable `vec_factor` returns the numbers 1, 2, and 3, as R stores each factor level as a number, assigned in alphabetical order.  
-
 This helps explain what happens when taking the mean. The logical variable has a natural numeric meaning, so taking the mean treats TRUE as 1 and FALSE as 0 and returns the proportion of TRUE values. The character variable cannot be converted to numbers at all, so its mean is NA. The factor variable can be converted to numbers, but these numbers are just labels for the categories with no numeric meaning, so taking the mean returns NA. 
