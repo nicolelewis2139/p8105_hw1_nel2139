@@ -71,7 +71,6 @@ mean_vec_factor
 ```
 
 Taking the mean works for the numeric and logical variables but does not work for the character and factor variables, as the mean function only accepts numbers, or values it can easily treat as numbers. 
-
 The mean of the numeric variable `stnorm_samp` is `r round(mean_stnorm_samp, digits = 2)`, which is the average of the 10 sampled values. This value is close to 0, as expected for a standard normal distribution. The mean of the logical variable `stnorm_samp_pos` is `r round(mean_stnorm_samp_pos, digits = 2)`, which is the proportion of sampled values greater than 0. This works because TRUE is treated as 1 and FALSE is treated as 0. The mean of the character variable `vec_char` cannot be calculated as the variable contains text, which has no numerical value. The mean of the factor variable `vec_factor` also cannot be calculated as the variable contains categories with no numeric meaning. 
 
 The next chunk of code applies the `as.numeric` function to the logical, character, and factor variables to attempt to convert them to numeric. The code is shown but not evaluated.
