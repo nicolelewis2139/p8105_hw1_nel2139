@@ -82,5 +82,6 @@ as.numeric(pull(prob2_df, vec_char))
 as.numeric(pull(prob2_df, vec_factor))
 ```
 
-Converting the logical variable `stnorm_samp_pos` to numeric turns TRUE into 1 and FALSE into 0. Converting the character variable `vec_char` returns NA for every value as the variable contains text with no numerical value. Converting the factor variable `vec_factor` returns the numbers 1, 2, and 3, as R stores each factor level as a number, assigned in alphabetical order.  
+Converting the logical variable `stnorm_samp_pos` to numeric turns TRUE into 1 and FALSE into 0. Converting the character variable `vec_char` returns NA for every value as the variable contains text with no numerical value. Converting the factor variable `vec_factor` returns the numbers 1, 2, and 3, as R stores each factor level as a number, assigned in alphabetical order. 
+
 This helps explain what happens when taking the mean. The logical variable has a natural numeric meaning, so taking the mean treats TRUE as 1 and FALSE as 0 and returns the proportion of TRUE values. The character variable cannot be converted to numbers at all, so its mean is NA. The factor variable can be converted to numbers, but these numbers are just labels for the categories with no numeric meaning, so taking the mean returns NA. 
