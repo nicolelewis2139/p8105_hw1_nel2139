@@ -59,13 +59,15 @@ The next chunk of code attempts to take the mean of each variable in the datafra
 
 ```{r problem_2_df_means}
 mean_stnorm_samp = mean(pull(prob2_df, stnorm_samp))
-mean_stnorm_samp_pos = mean(pull(prob2_df, stnorm_samp_pos))
-mean_vec_char = mean(pull(prob2_df, vec_char))
-mean_vec_factor = mean(pull(prob2_df, vec_factor))
-
 mean_stnorm_samp
+
+mean_stnorm_samp_pos = mean(pull(prob2_df, stnorm_samp_pos))
 mean_stnorm_samp_pos
+
+mean_vec_char = mean(pull(prob2_df, vec_char))
 mean_vec_char
+
+mean_vec_factor = mean(pull(prob2_df, vec_factor))
 mean_vec_factor
 ```
 
